@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A2C60CF126F78606008FFC18 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2C60CF026F78606008FFC18 /* GoogleService-Info.plist */; };
 		A2E2BC8526F76E240066012F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E2BC8426F76E240066012F /* AppDelegate.swift */; };
 		A2E2BC8726F76E240066012F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E2BC8626F76E240066012F /* SceneDelegate.swift */; };
 		A2E2BC8926F76E240066012F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E2BC8826F76E240066012F /* ViewController.swift */; };
 		A2E2BC8E26F76E300066012F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2E2BC8D26F76E300066012F /* Assets.xcassets */; };
 		A2E2BC9126F76E300066012F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2E2BC8F26F76E300066012F /* LaunchScreen.storyboard */; };
+		BC2E4AF62E31F0C29F665548 /* Pods_LandmarkRemark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D64DA79CD9D7E96FA3092AEA /* Pods_LandmarkRemark.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5BA98C56E92A77941D210A42 /* Pods-LandmarkRemark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkRemark.release.xcconfig"; path = "Target Support Files/Pods-LandmarkRemark/Pods-LandmarkRemark.release.xcconfig"; sourceTree = "<group>"; };
+		A2C60CF026F78606008FFC18 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A2E2BC8126F76E240066012F /* LandmarkRemark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LandmarkRemark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2E2BC8426F76E240066012F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2E2BC8626F76E240066012F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -22,6 +26,8 @@
 		A2E2BC8D26F76E300066012F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2E2BC9026F76E300066012F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A2E2BC9226F76E300066012F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D64DA79CD9D7E96FA3092AEA /* Pods_LandmarkRemark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LandmarkRemark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDE6B9D535087EFE1E38EE83 /* Pods-LandmarkRemark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkRemark.debug.xcconfig"; path = "Target Support Files/Pods-LandmarkRemark/Pods-LandmarkRemark.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +35,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC2E4AF62E31F0C29F665548 /* Pods_LandmarkRemark.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		93DA56E40EBC03EB1C9A2182 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FDE6B9D535087EFE1E38EE83 /* Pods-LandmarkRemark.debug.xcconfig */,
+				5BA98C56E92A77941D210A42 /* Pods-LandmarkRemark.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		A2E2BC7826F76E240066012F = {
 			isa = PBXGroup;
 			children = (
 				A2E2BC8326F76E240066012F /* LandmarkRemark */,
 				A2E2BC8226F76E240066012F /* Products */,
+				93DA56E40EBC03EB1C9A2182 /* Pods */,
+				C425FBE2255DEF3DE21B6FAE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +81,7 @@
 				A2E2BCA226F7805E0066012F /* Extension */,
 				A2E2BC9F26F780430066012F /* Support */,
 				A2E2BC9226F76E300066012F /* Info.plist */,
+				A2C60CF026F78606008FFC18 /* GoogleService-Info.plist */,
 			);
 			path = LandmarkRemark;
 			sourceTree = "<group>";
@@ -128,6 +148,14 @@
 			path = Screens;
 			sourceTree = "<group>";
 		};
+		C425FBE2255DEF3DE21B6FAE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D64DA79CD9D7E96FA3092AEA /* Pods_LandmarkRemark.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +163,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A2E2BC9526F76E310066012F /* Build configuration list for PBXNativeTarget "LandmarkRemark" */;
 			buildPhases = (
+				5A7F79299C62B2F6BDFCD239 /* [CP] Check Pods Manifest.lock */,
 				A2E2BC7D26F76E240066012F /* Sources */,
 				A2E2BC7E26F76E240066012F /* Frameworks */,
 				A2E2BC7F26F76E240066012F /* Resources */,
+				7B0904560B693A9EA900E4F3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -187,10 +217,53 @@
 			files = (
 				A2E2BC9126F76E300066012F /* LaunchScreen.storyboard in Resources */,
 				A2E2BC8E26F76E300066012F /* Assets.xcassets in Resources */,
+				A2C60CF126F78606008FFC18 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5A7F79299C62B2F6BDFCD239 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LandmarkRemark-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7B0904560B693A9EA900E4F3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark/Pods-LandmarkRemark-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark/Pods-LandmarkRemark-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark/Pods-LandmarkRemark-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A2E2BC7D26F76E240066012F /* Sources */ = {
@@ -335,6 +408,7 @@
 		};
 		A2E2BC9626F76E310066012F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDE6B9D535087EFE1E38EE83 /* Pods-LandmarkRemark.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -354,6 +428,7 @@
 		};
 		A2E2BC9726F76E310066012F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BA98C56E92A77941D210A42 /* Pods-LandmarkRemark.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
