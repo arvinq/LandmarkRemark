@@ -3,11 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		A2C60CF126F78606008FFC18 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2C60CF026F78606008FFC18 /* GoogleService-Info.plist */; };
+		A2C60D0726F9BB85008FFC18 /* Remark.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C60D0626F9BB85008FFC18 /* Remark.swift */; };
+		A2C60D0A26F9BBDD008FFC18 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C60D0926F9BBDD008FFC18 /* User.swift */; };
+		A2C60D0D26F9BC61008FFC18 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C60D0C26F9BC61008FFC18 /* PersistenceManager.swift */; };
+		A2C60D1026F9BC73008FFC18 /* ViewModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C60D0F26F9BC73008FFC18 /* ViewModelManager.swift */; };
 		A2E2BC8526F76E240066012F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E2BC8426F76E240066012F /* AppDelegate.swift */; };
 		A2E2BC8726F76E240066012F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E2BC8626F76E240066012F /* SceneDelegate.swift */; };
 		A2E2BC8926F76E240066012F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E2BC8826F76E240066012F /* ViewController.swift */; };
@@ -19,6 +23,10 @@
 /* Begin PBXFileReference section */
 		5BA98C56E92A77941D210A42 /* Pods-LandmarkRemark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkRemark.release.xcconfig"; path = "Target Support Files/Pods-LandmarkRemark/Pods-LandmarkRemark.release.xcconfig"; sourceTree = "<group>"; };
 		A2C60CF026F78606008FFC18 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A2C60D0626F9BB85008FFC18 /* Remark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remark.swift; sourceTree = "<group>"; };
+		A2C60D0926F9BBDD008FFC18 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A2C60D0C26F9BC61008FFC18 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		A2C60D0F26F9BC73008FFC18 /* ViewModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelManager.swift; sourceTree = "<group>"; };
 		A2E2BC8126F76E240066012F /* LandmarkRemark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LandmarkRemark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2E2BC8426F76E240066012F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2E2BC8626F76E240066012F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +56,6 @@
 				FDE6B9D535087EFE1E38EE83 /* Pods-LandmarkRemark.debug.xcconfig */,
 				5BA98C56E92A77941D210A42 /* Pods-LandmarkRemark.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -89,6 +96,8 @@
 		A2E2BC9C26F780240066012F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A2C60D0626F9BB85008FFC18 /* Remark.swift */,
+				A2C60D0926F9BBDD008FFC18 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -122,6 +131,8 @@
 		A2E2BCA026F780480066012F /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				A2C60D0C26F9BC61008FFC18 /* PersistenceManager.swift */,
+				A2C60D0F26F9BC73008FFC18 /* ViewModelManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -271,7 +282,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2E2BC8926F76E240066012F /* ViewController.swift in Sources */,
+				A2C60D0726F9BB85008FFC18 /* Remark.swift in Sources */,
+				A2C60D1026F9BC73008FFC18 /* ViewModelManager.swift in Sources */,
 				A2E2BC8526F76E240066012F /* AppDelegate.swift in Sources */,
+				A2C60D0D26F9BC61008FFC18 /* PersistenceManager.swift in Sources */,
+				A2C60D0A26F9BBDD008FFC18 /* User.swift in Sources */,
 				A2E2BC8726F76E240066012F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
