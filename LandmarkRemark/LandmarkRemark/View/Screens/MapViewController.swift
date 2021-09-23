@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ViewController: UIViewController {
+class MapViewController: UIViewController {
 
     let mapView = MKMapView()
     let locationManager = CLLocationManager()
@@ -94,7 +94,7 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: CLLocationManagerDelegate {
+extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // when the user changes location
@@ -110,9 +110,9 @@ extension ViewController: CLLocationManagerDelegate {
 }
 
 
-extension ViewController: MKMapViewDelegate {
+extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print("\(String(describing: view.annotation?.coordinate))")
+        
     }
 }
