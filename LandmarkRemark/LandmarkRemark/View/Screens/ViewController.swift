@@ -13,7 +13,6 @@ class ViewController: UIViewController {
 
     let mapView = MKMapView()
     let locationManager = CLLocationManager()
-    var previousLocation: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,8 +72,6 @@ class ViewController: UIViewController {
                 // only when app is open
                 mapView.showsUserLocation = true
                 locationManager.startUpdatingLocation()
-                
-                previousLocation = getCenterLocation(for: mapView)
                 break
             case .denied:
                 // alert the user that they need to turn on permissions, when they denied in the first place
@@ -94,14 +91,7 @@ class ViewController: UIViewController {
         let region = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: Map.regionInMeters, longitudinalMeters: Map.regionInMeters)
         mapView.setRegion(region, animated: true)
     }
-    
-    // we want to get the location of the center of the map when we're scrolling so that we know what's the location of the center
-    func getCenterLocation(for mapView: MKMapView) -> CLLocation {
-        let latitude = mapView.centerCoordinate.latitude
-        let longitude = mapView.centerCoordinate.longitude
-        
-        return CLLocation(latitude: latitude, longitude: longitude)
-    }
+
 }
 
 extension ViewController: CLLocationManagerDelegate {
@@ -121,37 +111,6 @@ extension ViewController: CLLocationManagerDelegate {
 
 
 extension ViewController: MKMapViewDelegate {
-    // for reverse geo-location
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        let mapCenter = getCenterLocation(for: mapView)
-        let geoCoder = CLGeocoder()
-        
-         
-        // just a buffer to prevent geoCoder from requesting reverseGeocode
-        // if the updated region changed at about 50 meters, then we proceed with requesting the addresses, else no.
-        guard let previousLocation = self.previousLocation,
-              mapCenter.distance(from: previousLocation) > 50 else { return }
-        self.previousLocation = mapCenter
-        
-        
-        // geocoder gets the address from the latitude and longitude defined in center of the map
-        geoCoder.reverseGeocodeLocation(mapCenter) { [weak self] (placemarks, error) in
-            guard let self = self else { return }
-            
-            if let _ = error {
-                // alert when error is present
-                return
-            }
-            
-            guard let placemark = placemarks?.first else {
-                //alert here for showing if placemarks is not present
-                return
-            }
-            
-            let streetNumber = placemark.thoroughfare
-            let streetName = placemark.subThoroughfare
-        }
-    }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         print("\(String(describing: view.annotation?.coordinate))")
