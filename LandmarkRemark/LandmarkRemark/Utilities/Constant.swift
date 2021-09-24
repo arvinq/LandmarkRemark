@@ -20,7 +20,7 @@ enum Space {
 enum Size {
     static let buttonHeight: CGFloat = 40.0
     static let separatorHeight: CGFloat = 1.0
-    static let textViewHeight: CGFloat = 150.0
+    static let textViewHeight: CGFloat = 70.0
 }
 
 enum Animation {

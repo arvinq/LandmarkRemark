@@ -133,7 +133,7 @@ class AddNoteViewController: UIViewController {
             
             noteTextView.topAnchor.constraint(equalTo: noteLabel.bottomAnchor, constant: Space.padding),
             noteTextView.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor),
-            noteTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Space.adjacent),
+            noteTextView.trailingAnchor.constraint(equalTo: separatorView.trailingAnchor),
             noteTextView.heightAnchor.constraint(equalToConstant: Size.textViewHeight),
             
             saveNoteButton.topAnchor.constraint(equalTo: noteTextView.bottomAnchor, constant: Space.adjacent),
