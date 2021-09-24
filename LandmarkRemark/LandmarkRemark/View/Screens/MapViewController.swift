@@ -113,6 +113,24 @@ extension MapViewController: CLLocationManagerDelegate {
 extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let title = view.annotation?.title else { return }
         
+        let currentLocationInfoVC = CurrentLocationInfoViewController()
+        currentLocationInfoVC.titleText = title
+        currentLocationInfoVC.coordinates = view.annotation?.coordinate
+        
+        
+        if #available(iOS 15.0, *) {
+            if let sheet = currentLocationInfoVC.sheetPresentationController {
+                sheet.detents = [.medium(), .large()]
+                sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+                sheet.prefersGrabberVisible = true
+            }
+            present(currentLocationInfoVC, animated: true, completion: nil)
+        } else {
+            // Fallback on earlier versions
+            let navController = UINavigationController(rootViewController: currentLocationInfoVC)
+            present(navController, animated: true, completion: nil)
+        }
     }
 }

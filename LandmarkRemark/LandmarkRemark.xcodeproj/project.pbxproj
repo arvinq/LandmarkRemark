@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A201F41426FCE2AC008F6CC0 /* CurrentLocationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A201F41326FCE2AC008F6CC0 /* CurrentLocationInfoViewController.swift */; };
+		A201F41626FD62AF008F6CC0 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A201F41526FD62AE008F6CC0 /* UIViewController+Ext.swift */; };
+		A201F41926FD6997008F6CC0 /* LRSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A201F41826FD6997008F6CC0 /* LRSeparatorView.swift */; };
 		A2B69C6826FA696600FA3937 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B69C6726FA696600FA3937 /* Constant.swift */; };
 		A2C60CF126F78606008FFC18 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2C60CF026F78606008FFC18 /* GoogleService-Info.plist */; };
 		A2C60D0726F9BB85008FFC18 /* Remark.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C60D0626F9BB85008FFC18 /* Remark.swift */; };
@@ -23,6 +26,9 @@
 
 /* Begin PBXFileReference section */
 		5BA98C56E92A77941D210A42 /* Pods-LandmarkRemark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkRemark.release.xcconfig"; path = "Target Support Files/Pods-LandmarkRemark/Pods-LandmarkRemark.release.xcconfig"; sourceTree = "<group>"; };
+		A201F41326FCE2AC008F6CC0 /* CurrentLocationInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationInfoViewController.swift; sourceTree = "<group>"; };
+		A201F41526FD62AE008F6CC0 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+Ext.swift"; path = "LandmarkRemark/View/Screens/UIViewController+Ext.swift"; sourceTree = SOURCE_ROOT; };
+		A201F41826FD6997008F6CC0 /* LRSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRSeparatorView.swift; sourceTree = "<group>"; };
 		A2B69C6726FA696600FA3937 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		A2C60CF026F78606008FFC18 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A2C60D0626F9BB85008FFC18 /* Remark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remark.swift; sourceTree = "<group>"; };
@@ -59,6 +65,14 @@
 				5BA98C56E92A77941D210A42 /* Pods-LandmarkRemark.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		A201F41726FD697C008F6CC0 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				A201F41826FD6997008F6CC0 /* LRSeparatorView.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		A2E2BC7826F76E240066012F = {
@@ -114,6 +128,7 @@
 		A2E2BC9E26F7803D0066012F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A201F41726FD697C008F6CC0 /* Custom */,
 				A2E2BCA326F780E10066012F /* Screens */,
 			);
 			path = View;
@@ -150,6 +165,7 @@
 		A2E2BCA226F7805E0066012F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				A201F41526FD62AE008F6CC0 /* UIViewController+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -158,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				A2E2BC8826F76E240066012F /* MapViewController.swift */,
+				A201F41326FCE2AC008F6CC0 /* CurrentLocationInfoViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -284,7 +301,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A201F41926FD6997008F6CC0 /* LRSeparatorView.swift in Sources */,
+				A201F41426FCE2AC008F6CC0 /* CurrentLocationInfoViewController.swift in Sources */,
 				A2E2BC8926F76E240066012F /* MapViewController.swift in Sources */,
+				A201F41626FD62AF008F6CC0 /* UIViewController+Ext.swift in Sources */,
 				A2C60D0726F9BB85008FFC18 /* Remark.swift in Sources */,
 				A2C60D1026F9BC73008FFC18 /* ViewModelManager.swift in Sources */,
 				A2B69C6826FA696600FA3937 /* Constant.swift in Sources */,
