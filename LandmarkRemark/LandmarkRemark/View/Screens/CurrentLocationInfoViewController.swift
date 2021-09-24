@@ -37,7 +37,7 @@ class CurrentLocationInfoViewController: UIViewController {
     private func setupView() {
         view.backgroundColor = .systemBackground
         
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissViewController))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissViewController))
         navigationItem.rightBarButtonItem = doneButton
         
         // annotationLabel (create a custom label for annotation label and lat/long labels)
@@ -49,11 +49,11 @@ class CurrentLocationInfoViewController: UIViewController {
         view.addSubview(annotationTitle)
         
         // latitude and longitude labels
-        latitudeLabel.font = UIFont.systemFont(ofSize: 12.0, weight: .medium)
+        latitudeLabel.font = UIFont.systemFont(ofSize: 14.0, weight: .medium)
         latitudeLabel.textColor = .secondaryLabel
         latitudeLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        longitudeLabel.font = UIFont.systemFont(ofSize: 12.0, weight: .medium)
+        longitudeLabel.font = UIFont.systemFont(ofSize: 14.0, weight: .medium)
         longitudeLabel.textColor = .secondaryLabel
         longitudeLabel.translatesAutoresizingMaskIntoConstraints = false
         if let coordinates = coordinates {
@@ -72,6 +72,7 @@ class CurrentLocationInfoViewController: UIViewController {
         addNoteButton.setTitleColor(.white, for: .normal)
         addNoteButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         addNoteButton.layer.cornerRadius = Space.cornerRadius
+        addNoteButton.addTarget(self, action: #selector(addNoteTapped), for: .touchUpInside)
         addNoteButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(addNoteButton)
     }
@@ -86,15 +87,15 @@ class CurrentLocationInfoViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             annotationTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topPadding),
-            annotationTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.padding),
+            annotationTitle.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor),
             annotationTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Space.padding),
             
             latitudeLabel.topAnchor.constraint(equalTo: annotationTitle.bottomAnchor, constant: Space.padding),
-            latitudeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.padding),
+            latitudeLabel.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor),
             latitudeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Space.padding),
 
             longitudeLabel.topAnchor.constraint(equalTo: latitudeLabel.bottomAnchor, constant: Space.padding),
-            longitudeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.padding),
+            longitudeLabel.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor),
             longitudeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Space.padding),
             
             separatorView.topAnchor.constraint(equalTo: longitudeLabel.bottomAnchor, constant: Space.adjacent),
@@ -112,6 +113,14 @@ class CurrentLocationInfoViewController: UIViewController {
     private func setupNotes() {
         //check DB first if we have a note, else, we will show the addNote button
 //        addNoteButton.isHidden = true
+    }
+    
+    @objc private func addNoteTapped() {
+        let addNoteViewController = AddNoteViewController()
+        addNoteViewController.coordinates = coordinates
+        
+        let navController = UINavigationController(rootViewController: addNoteViewController)
+        present(navController, animated: true)
     }
     
     @objc private func dismissViewController() {

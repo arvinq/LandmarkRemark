@@ -10,6 +10,8 @@
 		A201F41426FCE2AC008F6CC0 /* CurrentLocationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A201F41326FCE2AC008F6CC0 /* CurrentLocationInfoViewController.swift */; };
 		A201F41626FD62AF008F6CC0 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A201F41526FD62AE008F6CC0 /* UIViewController+Ext.swift */; };
 		A201F41926FD6997008F6CC0 /* LRSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A201F41826FD6997008F6CC0 /* LRSeparatorView.swift */; };
+		A201F41B26FD96AB008F6CC0 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A201F41A26FD96AB008F6CC0 /* AddNoteViewController.swift */; };
+		A201F41D26FDB36B008F6CC0 /* LRTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A201F41C26FDB36B008F6CC0 /* LRTextView.swift */; };
 		A2B69C6826FA696600FA3937 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B69C6726FA696600FA3937 /* Constant.swift */; };
 		A2C60CF126F78606008FFC18 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2C60CF026F78606008FFC18 /* GoogleService-Info.plist */; };
 		A2C60D0726F9BB85008FFC18 /* Remark.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C60D0626F9BB85008FFC18 /* Remark.swift */; };
@@ -29,6 +31,8 @@
 		A201F41326FCE2AC008F6CC0 /* CurrentLocationInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationInfoViewController.swift; sourceTree = "<group>"; };
 		A201F41526FD62AE008F6CC0 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+Ext.swift"; path = "LandmarkRemark/View/Screens/UIViewController+Ext.swift"; sourceTree = SOURCE_ROOT; };
 		A201F41826FD6997008F6CC0 /* LRSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRSeparatorView.swift; sourceTree = "<group>"; };
+		A201F41A26FD96AB008F6CC0 /* AddNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
+		A201F41C26FDB36B008F6CC0 /* LRTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRTextView.swift; sourceTree = "<group>"; };
 		A2B69C6726FA696600FA3937 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		A2C60CF026F78606008FFC18 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A2C60D0626F9BB85008FFC18 /* Remark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remark.swift; sourceTree = "<group>"; };
@@ -71,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				A201F41826FD6997008F6CC0 /* LRSeparatorView.swift */,
+				A201F41C26FDB36B008F6CC0 /* LRTextView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -175,6 +180,7 @@
 			children = (
 				A2E2BC8826F76E240066012F /* MapViewController.swift */,
 				A201F41326FCE2AC008F6CC0 /* CurrentLocationInfoViewController.swift */,
+				A201F41A26FD96AB008F6CC0 /* AddNoteViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -307,8 +313,10 @@
 				A201F41626FD62AF008F6CC0 /* UIViewController+Ext.swift in Sources */,
 				A2C60D0726F9BB85008FFC18 /* Remark.swift in Sources */,
 				A2C60D1026F9BC73008FFC18 /* ViewModelManager.swift in Sources */,
+				A201F41D26FDB36B008F6CC0 /* LRTextView.swift in Sources */,
 				A2B69C6826FA696600FA3937 /* Constant.swift in Sources */,
 				A2E2BC8526F76E240066012F /* AppDelegate.swift in Sources */,
+				A201F41B26FD96AB008F6CC0 /* AddNoteViewController.swift in Sources */,
 				A2C60D0D26F9BC61008FFC18 /* PersistenceManager.swift in Sources */,
 				A2C60D0A26F9BBDD008FFC18 /* User.swift in Sources */,
 				A2E2BC8726F76E240066012F /* SceneDelegate.swift in Sources */,
