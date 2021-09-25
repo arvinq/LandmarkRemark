@@ -26,3 +26,11 @@ enum Size {
 enum Animation {
     static let duration: CGFloat = 0.35
 }
+
+enum Alpha {
+    static let mid: CGFloat = 0.5
+    static let solid: CGFloat = 1.0
+    static let none: CGFloat = 0.0
+    static let strongFade: CGFloat = 0.8
+    static let weakFade: CGFloat = 0.3
+}

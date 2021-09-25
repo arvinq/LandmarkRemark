@@ -15,6 +15,7 @@
 		A201F41F26FEC3BB008F6CC0 /* RemarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A201F41E26FEC3BB008F6CC0 /* RemarkViewModel.swift */; };
 		A201F42126FEEAF8008F6CC0 /* LRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A201F42026FEEAF8008F6CC0 /* LRError.swift */; };
 		A201F42326FF5B9C008F6CC0 /* CLLocationCoordinate2D+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A201F42226FF5B9C008F6CC0 /* CLLocationCoordinate2D+Ext.swift */; };
+		A207D9A326FF82AF00DB01E0 /* LRSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207D9A226FF82AF00DB01E0 /* LRSymbols.swift */; };
 		A2B69C6826FA696600FA3937 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B69C6726FA696600FA3937 /* Constant.swift */; };
 		A2C60CF126F78606008FFC18 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2C60CF026F78606008FFC18 /* GoogleService-Info.plist */; };
 		A2C60D0726F9BB85008FFC18 /* Remark.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C60D0626F9BB85008FFC18 /* Remark.swift */; };
@@ -39,6 +40,7 @@
 		A201F41E26FEC3BB008F6CC0 /* RemarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkViewModel.swift; sourceTree = "<group>"; };
 		A201F42026FEEAF8008F6CC0 /* LRError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRError.swift; sourceTree = "<group>"; };
 		A201F42226FF5B9C008F6CC0 /* CLLocationCoordinate2D+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CLLocationCoordinate2D+Ext.swift"; path = "LandmarkRemark/Utilities/CLLocationCoordinate2D+Ext.swift"; sourceTree = SOURCE_ROOT; };
+		A207D9A226FF82AF00DB01E0 /* LRSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRSymbols.swift; sourceTree = "<group>"; };
 		A2B69C6726FA696600FA3937 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		A2C60CF026F78606008FFC18 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A2C60D0626F9BB85008FFC18 /* Remark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remark.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			children = (
 				A2B69C6726FA696600FA3937 /* Constant.swift */,
 				A201F42026FEEAF8008F6CC0 /* LRError.swift */,
+				A207D9A226FF82AF00DB01E0 /* LRSymbols.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				A201F41F26FEC3BB008F6CC0 /* RemarkViewModel.swift in Sources */,
 				A2C60D0D26F9BC61008FFC18 /* PersistenceManager.swift in Sources */,
 				A2C60D0A26F9BBDD008FFC18 /* User.swift in Sources */,
+				A207D9A326FF82AF00DB01E0 /* LRSymbols.swift in Sources */,
 				A2E2BC8726F76E240066012F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

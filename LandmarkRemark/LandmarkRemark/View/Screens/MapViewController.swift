@@ -14,6 +14,8 @@ class MapViewController: UIViewController {
     let mapView = MKMapView()
     let locationManager = CLLocationManager()
     
+    var infoButton = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -36,6 +38,15 @@ class MapViewController: UIViewController {
         mapView.showsUserLocation = true
         mapView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mapView)
+        
+        infoButton.backgroundColor = .black
+        infoButton.alpha = Alpha.mid
+        infoButton.setImage(SFSymbols.infoFill, for: .normal)
+        infoButton.tintColor = .white
+        infoButton.layer.cornerRadius = Space.cornerRadius
+        infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
+        infoButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(infoButton)
     }
     
     private func setupConstraints() {
@@ -43,7 +54,12 @@ class MapViewController: UIViewController {
             mapView.topAnchor.constraint(equalTo: view.topAnchor),
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            infoButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Space.padding),
+            infoButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Space.padding),
+            infoButton.heightAnchor.constraint(equalToConstant: Size.buttonHeight),
+            infoButton.widthAnchor.constraint(equalTo: infoButton.heightAnchor),
         ])
     }
     
@@ -90,6 +106,10 @@ class MapViewController: UIViewController {
     private func zoomViewOnUserLocation(_ location: CLLocation) {
         let region = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: Map.regionInMeters, longitudinalMeters: Map.regionInMeters)
         mapView.setRegion(region, animated: true)
+    }
+    
+    @objc private func infoButtonTapped() {
+        print("infoButtonTapped")
     }
 
 }

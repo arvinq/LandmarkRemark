@@ -99,7 +99,7 @@ class AddNoteViewController: UIViewController {
         saveNoteButton.layer.cornerRadius = Space.cornerRadius
         saveNoteButton.addTarget(self, action: #selector(saveNoteTapped), for: .touchUpInside)
         saveNoteButton.isEnabled = false
-        saveNoteButton.alpha = 0.5
+        saveNoteButton.alpha = Alpha.mid
         saveNoteButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(saveNoteButton)
     }
