@@ -12,6 +12,7 @@ class AddNoteViewController: UIViewController {
     
     var coordinates: CLLocationCoordinate2D?
     
+    var defaultTitle: String?
     var latitudeLabel = UILabel()
     var longitudeLabel = UILabel()
     var separatorView = LRSeparatorView()
@@ -144,7 +145,22 @@ class AddNoteViewController: UIViewController {
     }
  
     @objc private func saveNoteTapped() {
-        print("Saving Note!")
+        guard let coordinates = coordinates else { return }
+
+        let title = titleTextField.text ?? defaultTitle ?? "My Location"
+        let noteText = noteTextView.text ?? ""
+        
+        let remarkViewModel = RemarkViewModel(title: title, note: noteText, coordinate: coordinates)
+        
+        dismiss(animated: true) {
+            ViewModelManager.shared.addRemark(remarkViewModel: remarkViewModel) { error in
+                // TODO: make a notification post here if error is not nil. This should show the alert in the next screen
+                guard error == nil else {
+                    //NotificationCenter here
+                    return
+                }
+            }
+        }
     }
     
     @objc private func dismissViewController() {

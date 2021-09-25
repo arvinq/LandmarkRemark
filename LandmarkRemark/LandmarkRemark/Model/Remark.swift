@@ -6,10 +6,14 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-struct Remark {
-    let note: String
-    let longitude: Float
-    let latitude: Float
-    let user: User
+struct Remark: Codable {
+    // map the document's ID to our id here in our model
+    @DocumentID var id: String? = UUID().uuidString
+    var title: String
+    var note: String
+    var latitude: Double
+    var longitude: Double
+//    let user: User
 }

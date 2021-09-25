@@ -19,6 +19,10 @@ class CurrentLocationInfoViewController: UIViewController {
     var addNoteButton = UIButton()
     var separatorView = LRSeparatorView()
     
+    var titleLabel = UILabel()
+    var noteLabel = UILabel()
+    var noteTextView = LRTextView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -75,6 +79,21 @@ class CurrentLocationInfoViewController: UIViewController {
         addNoteButton.addTarget(self, action: #selector(addNoteTapped), for: .touchUpInside)
         addNoteButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(addNoteButton)
+        
+        // notes title label
+        titleLabel.font = UIFont.systemFont(ofSize: 18.0, weight: .bold)
+        titleLabel.textColor = .label
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(titleLabel)
+        
+        // notes label
+        noteLabel.text = "Note:"
+        noteLabel.font = UIFont.systemFont(ofSize: 14.0, weight: .medium)
+        noteLabel.textColor = .secondaryLabel
+        noteLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(noteLabel)
+        
+        view.addSubview(noteTextView)
     }
     
     private func setupConstraints() {
@@ -106,13 +125,56 @@ class CurrentLocationInfoViewController: UIViewController {
             addNoteButton.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: Space.adjacent),
             addNoteButton.widthAnchor.constraint(equalTo: separatorView.widthAnchor),
             addNoteButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            addNoteButton.heightAnchor.constraint(equalToConstant: Size.buttonHeight)
+            addNoteButton.heightAnchor.constraint(equalToConstant: Size.buttonHeight),
+            
+            titleLabel.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: Space.adjacent),
+            titleLabel.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  Space.padding),
+            
+            noteLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Space.adjacent),
+            noteLabel.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor),
+            noteLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Space.padding),
+            
+            noteTextView.topAnchor.constraint(equalTo: noteLabel.bottomAnchor, constant: Space.padding),
+            noteTextView.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor),
+            noteTextView.trailingAnchor.constraint(equalTo: separatorView.trailingAnchor),
+            noteTextView.heightAnchor.constraint(equalToConstant: Size.textViewHeight),
         ])
     }
     
     private func setupNotes() {
         //check DB first if we have a note, else, we will show the addNote button
-//        addNoteButton.isHidden = true
+        ViewModelManager.shared.getRemarks { [weak self] error in
+            guard let self = self else { return }
+            
+            // if error is present when retrieving the remarks, we automatically hide the controls and show add button
+            guard error == nil else {
+                self.setupViewVisibility(using: false)
+                return
+            }
+            
+            // if no coordinates is passed (which is highly unlikely) and there's no remark on the location, then we show add button
+            guard let coordinates = self.coordinates,
+                  let remarkViewModel = ViewModelManager.shared.getRemark(on: coordinates) else {
+                      self.setupViewVisibility(using: false)
+                      return
+            }
+            
+            // if everything is good, we populate the fields and hide our addButton
+            self.setupViewVisibility(using: true)
+            self.titleLabel.text = remarkViewModel.title
+            self.noteTextView.text = remarkViewModel.note
+        }
+    }
+    
+    private func setupViewVisibility(using isHidden: Bool) {
+        // no remarks yet
+        addNoteButton.isHidden = isHidden
+        
+        // show remarks properies
+        titleLabel.isHidden = !isHidden
+        noteLabel.isHidden = !isHidden
+        noteTextView.isHidden = !isHidden
     }
     
     @objc private func addNoteTapped() {
