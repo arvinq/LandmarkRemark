@@ -19,4 +19,22 @@ extension UIViewController {
         
         return top
     }
+    
+    /**
+     * Show alert usign the passed title and message.
+     *
+     * - Parameters:
+     *  - title: Title of the alert
+     *  - message: Information message showing the reason for the alert
+     *  - buttonTitle: Title of the button to dismiss the alert
+     */
+    func presentAlert(withTitle title: String, andMessage message: String, buttonTitle: String) {
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: buttonTitle, style: .cancel)
+            
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true)
+        }
+    }
 }

@@ -69,7 +69,7 @@ class AllRemarksInfoViewController: UIViewController {
             guard let self = self else { return }
             
             guard error == nil else {
-                //present alert here for empty remarks
+                self.presentAlert(withTitle: "Empty Remarks", andMessage: error!.rawValue, buttonTitle: "Ok")
                 return
             }
             

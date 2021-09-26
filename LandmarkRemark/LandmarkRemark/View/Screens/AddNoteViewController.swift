@@ -153,10 +153,11 @@ class AddNoteViewController: UIViewController {
         let remarkViewModel = RemarkViewModel(title: title, note: noteText, coordinate: coordinates)
         
         dismiss(animated: true) {
-            ViewModelManager.shared.addRemark(remarkViewModel: remarkViewModel) { error in
-                // TODO: make a notification post here if error is not nil. This should show the alert in the next screen
+            ViewModelManager.shared.addRemark(remarkViewModel: remarkViewModel) { [weak self] error in
+                guard let self = self else { return }
+                
                 guard error == nil else {
-                    //NotificationCenter here
+                    self.presentAlert(withTitle: "Add Remark", andMessage: error!.rawValue, buttonTitle: "Ok")
                     return
                 }
             }

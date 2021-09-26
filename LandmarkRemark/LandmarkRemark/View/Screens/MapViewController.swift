@@ -83,6 +83,7 @@ class MapViewController: UIViewController {
             checkLocationAuthorization()
         } else {
             // show alert letting the user know they have to turn the location services on for the map to work. (system-wide)
+            presentAlert(withTitle: "Location Services Off", andMessage: LRError.locationServicesDisabled.rawValue, buttonTitle: "Ok")
         }
     }
 
@@ -104,12 +105,14 @@ class MapViewController: UIViewController {
                 break
             case .denied:
                 // alert the user that they need to turn on permissions, when they denied in the first place
+                presentAlert(withTitle: "Location Services Off", andMessage: LRError.locationAuthOff.rawValue, buttonTitle: "Ok")
                 break
             case .notDetermined:
                 locationManager.requestWhenInUseAuthorization()
                 break
             case .restricted:
                 // just show an alert that the location services are restricted for this app
+                presentAlert(withTitle: "Location Services Restricted", andMessage: LRError.locationAuthRestricted.rawValue, buttonTitle: "Ok")
                 break
             @unknown default:
                 break
@@ -137,8 +140,8 @@ class MapViewController: UIViewController {
         
         // For some reason, the sheetPresentationController doesn't work well with NavigationController and since the search controller resides in navigation, using SheetPresentation here doesn't seem to show the search bar.
         
-            let navController = UINavigationController(rootViewController: allRemarksInfoVC)
-            present(navController, animated: true, completion: nil)
+        let navController = UINavigationController(rootViewController: allRemarksInfoVC)
+        present(navController, animated: true, completion: nil)
     }
 
 }

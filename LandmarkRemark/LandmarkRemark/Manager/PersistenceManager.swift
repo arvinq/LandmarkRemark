@@ -21,7 +21,7 @@ class PersistenceManager {
         // query snapshot holds the documents from our collection
         db.collection("remarks").addSnapshotListener { querySnapshot, error in
             guard let documents = querySnapshot?.documents else {
-                // add an alert here or better yet, return to the calling function via completion handler
+                completion(.failure(.invalidResponse))
                 return
             }
             
