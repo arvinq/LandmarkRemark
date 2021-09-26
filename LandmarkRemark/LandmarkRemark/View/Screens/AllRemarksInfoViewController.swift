@@ -106,6 +106,8 @@ extension AllRemarksInfoViewController: UICollectionViewDelegate, UICollectionVi
         // get our viewModel pointed to by the selected indexPath
         guard let remarkViewModel = datasource.itemIdentifier(for: indexPath) else { return }
         
-        NotificationCenter.default.post(name: .LRCenterToSelectedLocation, object: self, userInfo: ["remarkViewModel":remarkViewModel])
+        dismiss(animated: true) {
+            NotificationCenter.default.post(name: .LRCenterToSelectedLocation, object: self, userInfo: ["remarkViewModel":remarkViewModel])
+        }
     }
 }

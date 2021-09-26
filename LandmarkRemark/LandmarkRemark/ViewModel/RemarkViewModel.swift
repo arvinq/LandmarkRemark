@@ -9,22 +9,21 @@ import Foundation
 import CoreLocation
 import MapKit
 
-struct RemarkViewModel: Hashable, MKAnnotation {
+struct RemarkViewModel: Hashable {
     var title: String
     var note: String
     var latitude: Double
     var longitude: Double
     
-    var coordinate: CLLocationCoordinate2D? {
+    var coordinate: CLLocationCoordinate2D {
         get {
             return CLLocationCoordinate2D(latitude: CLLocationDegrees(self.latitude),
                                           longitude: CLLocationDegrees(self.longitude))
         }
         
         set {
-            guard let coordinate = newValue else { return }
-            self.latitude = coordinate.latitude
-            self.longitude = coordinate.longitude
+            self.latitude = newValue.latitude
+            self.longitude = newValue.longitude
         }
     }
     

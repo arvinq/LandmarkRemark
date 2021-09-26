@@ -71,8 +71,7 @@ class MapViewController: UIViewController {
             guard let self = self else { return }
             
             if let remarkViewModel = notification.userInfo?["remarkViewModel"] as? RemarkViewModel {
-                let remarkLocation = CLLocation(latitude: remarkViewModel.latitude, longitude: remarkViewModel.longitude)
-                self.zoomViewOnUserLocation(remarkLocation)
+                self.mapAnnotation(using: remarkViewModel)
             }
         }
     }
@@ -120,6 +119,17 @@ class MapViewController: UIViewController {
     private func zoomViewOnUserLocation(_ location: CLLocation) {
         let region = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: Map.regionInMeters, longitudinalMeters: Map.regionInMeters)
         mapView.setRegion(region, animated: true)
+    }
+    
+    private func mapAnnotation(using remark: RemarkViewModel) {
+        
+        let remarkLocation = CLLocation(latitude: remark.latitude, longitude: remark.longitude)
+        let remarkAnnotation = RemarkAnnotation(title: remark.title, coordinate: remark.coordinate)
+        
+        let region = MKCoordinateRegion.init(center: remarkLocation.coordinate, latitudinalMeters: Map.regionInMeters, longitudinalMeters: Map.regionInMeters)
+        
+        mapView.setRegion(region, animated: true)
+        mapView.addAnnotation(remarkAnnotation)
     }
     
     @objc private func infoButtonTapped() {
