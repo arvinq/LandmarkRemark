@@ -15,6 +15,7 @@ class ViewModelManager {
     private init () { }
     
     private var remarkViewModelList: [RemarkViewModel] = []
+    private var filteredRemarkViewModelList: [RemarkViewModel] = []
     
     // MARK: PersistenceManager Connection
     
@@ -54,6 +55,10 @@ class ViewModelManager {
         return remarkViewModelList
     }
     
+    func getFilteredRemarks() -> [RemarkViewModel] {
+        return filteredRemarkViewModelList
+    }
+    
     func remarksCount() -> Int {
         return remarkViewModelList.count
     }
@@ -65,4 +70,24 @@ class ViewModelManager {
         return nil
     }
     
+    func filterRemark(having text: String) {
+        var titleFiltered = remarkViewModelList.filter {
+            $0.title.lowercased().contains(text.lowercased())
+        }
+        
+        let noteFiltered = remarkViewModelList.filter {
+            $0.note.lowercased().contains(text.lowercased())
+        }
+        
+        // remove the duplicates
+        titleFiltered.append(contentsOf: noteFiltered.filter({
+            !titleFiltered.contains($0)
+        }))
+        
+        filteredRemarkViewModelList =  titleFiltered
+    }
+    
+    func resetFilteredRemarks() {
+        filteredRemarkViewModelList = remarkViewModelList
+    }
 }

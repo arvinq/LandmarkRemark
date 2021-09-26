@@ -15,6 +15,8 @@ class AllRemarksInfoViewController: UIViewController {
     var collectionView: UICollectionView!
     var datasource: UICollectionViewDiffableDataSource<Section, RemarkViewModel>!
     
+    var searchController = UISearchController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -33,6 +35,7 @@ class AllRemarksInfoViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .systemBackground
+        title = "Landmarks"
         
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.scrollDirection = .vertical
@@ -43,19 +46,20 @@ class AllRemarksInfoViewController: UIViewController {
         collectionView.alwaysBounceVertical = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
+        
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search for landmarks"
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController = searchController
     }
     
     private func setupConstraints() {
-        var topPadding = Space.padding
-
-        if #available(iOS 15.0, *) {
-            topPadding = topBarHeight
-        }
-        
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topPadding),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Space.padding),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
@@ -110,4 +114,26 @@ extension AllRemarksInfoViewController: UICollectionViewDelegate, UICollectionVi
             NotificationCenter.default.post(name: .LRCenterToSelectedLocation, object: self, userInfo: ["remarkViewModel":remarkViewModel])
         }
     }
+}
+
+// MARK: Search Controller conformance
+
+extension AllRemarksInfoViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text, !text.isEmpty else {
+            // if search text is empty
+            ViewModelManager.shared.resetFilteredRemarks()
+            updateDatasource(using: ViewModelManager.shared.getAllRemarks())
+            return
+        }
+        
+        ViewModelManager.shared.filterRemark(having: text)
+        updateDatasource(using: ViewModelManager.shared.getFilteredRemarks())
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        ViewModelManager.shared.resetFilteredRemarks()
+        updateDatasource(using: ViewModelManager.shared.getAllRemarks())
+    }
+    
 }

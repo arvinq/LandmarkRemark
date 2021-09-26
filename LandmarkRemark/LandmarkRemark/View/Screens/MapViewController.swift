@@ -135,18 +135,10 @@ class MapViewController: UIViewController {
     @objc private func infoButtonTapped() {
         let allRemarksInfoVC = AllRemarksInfoViewController()
         
-        if #available(iOS 15.0, *) {
-            if let sheet = allRemarksInfoVC.sheetPresentationController {
-                sheet.detents = [.medium(), .large()]
-                sheet.prefersScrollingExpandsWhenScrolledToEdge = false
-                sheet.prefersGrabberVisible = true
-            }
-            present(allRemarksInfoVC, animated: true, completion: nil)
-        } else {
-            // Fallback on earlier versions
+        // For some reason, the sheetPresentationController doesn't work well with NavigationController and since the search controller resides in navigation, using SheetPresentation here doesn't seem to show the search bar.
+        
             let navController = UINavigationController(rootViewController: allRemarksInfoVC)
             present(navController, animated: true, completion: nil)
-        }
     }
 
 }
