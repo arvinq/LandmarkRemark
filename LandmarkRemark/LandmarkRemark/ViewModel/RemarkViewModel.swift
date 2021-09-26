@@ -7,8 +7,9 @@
 
 import Foundation
 import CoreLocation
+import MapKit
 
-struct RemarkViewModel: Hashable {
+struct RemarkViewModel: Hashable, MKAnnotation {
     var title: String
     var note: String
     var latitude: Double

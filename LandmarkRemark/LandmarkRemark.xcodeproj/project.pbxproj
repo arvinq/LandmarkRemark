@@ -16,6 +16,10 @@
 		A201F42126FEEAF8008F6CC0 /* LRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A201F42026FEEAF8008F6CC0 /* LRError.swift */; };
 		A201F42326FF5B9C008F6CC0 /* CLLocationCoordinate2D+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A201F42226FF5B9C008F6CC0 /* CLLocationCoordinate2D+Ext.swift */; };
 		A207D9A326FF82AF00DB01E0 /* LRSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207D9A226FF82AF00DB01E0 /* LRSymbols.swift */; };
+		A207D9A526FF8C0300DB01E0 /* AllRemarksInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207D9A426FF8C0300DB01E0 /* AllRemarksInfoViewController.swift */; };
+		A207D9A9270011BA00DB01E0 /* RemarkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207D9A8270011BA00DB01E0 /* RemarkCollectionViewCell.swift */; };
+		A207D9AB2700447E00DB01E0 /* NotificationName+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207D9AA2700447E00DB01E0 /* NotificationName+Ext.swift */; };
+		A207D9AD27004E8D00DB01E0 /* RemarkAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207D9AC27004E8D00DB01E0 /* RemarkAnnotation.swift */; };
 		A2B69C6826FA696600FA3937 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B69C6726FA696600FA3937 /* Constant.swift */; };
 		A2C60CF126F78606008FFC18 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2C60CF026F78606008FFC18 /* GoogleService-Info.plist */; };
 		A2C60D0726F9BB85008FFC18 /* Remark.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C60D0626F9BB85008FFC18 /* Remark.swift */; };
@@ -41,6 +45,10 @@
 		A201F42026FEEAF8008F6CC0 /* LRError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRError.swift; sourceTree = "<group>"; };
 		A201F42226FF5B9C008F6CC0 /* CLLocationCoordinate2D+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CLLocationCoordinate2D+Ext.swift"; path = "LandmarkRemark/Utilities/CLLocationCoordinate2D+Ext.swift"; sourceTree = SOURCE_ROOT; };
 		A207D9A226FF82AF00DB01E0 /* LRSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRSymbols.swift; sourceTree = "<group>"; };
+		A207D9A426FF8C0300DB01E0 /* AllRemarksInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRemarksInfoViewController.swift; sourceTree = "<group>"; };
+		A207D9A8270011BA00DB01E0 /* RemarkCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkCollectionViewCell.swift; sourceTree = "<group>"; };
+		A207D9AA2700447E00DB01E0 /* NotificationName+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NotificationName+Ext.swift"; path = "LandmarkRemark/View/Cell/NotificationName+Ext.swift"; sourceTree = SOURCE_ROOT; };
+		A207D9AC27004E8D00DB01E0 /* RemarkAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkAnnotation.swift; sourceTree = "<group>"; };
 		A2B69C6726FA696600FA3937 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		A2C60CF026F78606008FFC18 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A2C60D0626F9BB85008FFC18 /* Remark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remark.swift; sourceTree = "<group>"; };
@@ -79,13 +87,28 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		A201F41726FD697C008F6CC0 /* Custom */ = {
+		A201F41726FD697C008F6CC0 /* TextView */ = {
+			isa = PBXGroup;
+			children = (
+				A201F41C26FDB36B008F6CC0 /* LRTextView.swift */,
+			);
+			path = TextView;
+			sourceTree = "<group>";
+		};
+		A207D9A62700117A00DB01E0 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
 				A201F41826FD6997008F6CC0 /* LRSeparatorView.swift */,
-				A201F41C26FDB36B008F6CC0 /* LRTextView.swift */,
 			);
-			path = Custom;
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		A207D9A72700119800DB01E0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A207D9A8270011BA00DB01E0 /* RemarkCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		A2E2BC7826F76E240066012F = {
@@ -127,6 +150,7 @@
 			children = (
 				A2C60D0626F9BB85008FFC18 /* Remark.swift */,
 				A2C60D0926F9BBDD008FFC18 /* User.swift */,
+				A207D9AC27004E8D00DB01E0 /* RemarkAnnotation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -142,7 +166,9 @@
 		A2E2BC9E26F7803D0066012F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A201F41726FD697C008F6CC0 /* Custom */,
+				A207D9A72700119800DB01E0 /* Cell */,
+				A207D9A62700117A00DB01E0 /* UIView */,
+				A201F41726FD697C008F6CC0 /* TextView */,
 				A2E2BCA326F780E10066012F /* Screens */,
 			);
 			path = View;
@@ -183,6 +209,7 @@
 			children = (
 				A201F41526FD62AE008F6CC0 /* UIViewController+Ext.swift */,
 				A201F42226FF5B9C008F6CC0 /* CLLocationCoordinate2D+Ext.swift */,
+				A207D9AA2700447E00DB01E0 /* NotificationName+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -193,6 +220,7 @@
 				A2E2BC8826F76E240066012F /* MapViewController.swift */,
 				A201F41326FCE2AC008F6CC0 /* CurrentLocationInfoViewController.swift */,
 				A201F41A26FD96AB008F6CC0 /* AddNoteViewController.swift */,
+				A207D9A426FF8C0300DB01E0 /* AllRemarksInfoViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -325,12 +353,16 @@
 				A201F41626FD62AF008F6CC0 /* UIViewController+Ext.swift in Sources */,
 				A2C60D0726F9BB85008FFC18 /* Remark.swift in Sources */,
 				A2C60D1026F9BC73008FFC18 /* ViewModelManager.swift in Sources */,
+				A207D9A9270011BA00DB01E0 /* RemarkCollectionViewCell.swift in Sources */,
 				A201F42126FEEAF8008F6CC0 /* LRError.swift in Sources */,
 				A201F41D26FDB36B008F6CC0 /* LRTextView.swift in Sources */,
 				A2B69C6826FA696600FA3937 /* Constant.swift in Sources */,
 				A2E2BC8526F76E240066012F /* AppDelegate.swift in Sources */,
+				A207D9AD27004E8D00DB01E0 /* RemarkAnnotation.swift in Sources */,
 				A201F42326FF5B9C008F6CC0 /* CLLocationCoordinate2D+Ext.swift in Sources */,
 				A201F41B26FD96AB008F6CC0 /* AddNoteViewController.swift in Sources */,
+				A207D9AB2700447E00DB01E0 /* NotificationName+Ext.swift in Sources */,
+				A207D9A526FF8C0300DB01E0 /* AllRemarksInfoViewController.swift in Sources */,
 				A201F41F26FEC3BB008F6CC0 /* RemarkViewModel.swift in Sources */,
 				A2C60D0D26F9BC61008FFC18 /* PersistenceManager.swift in Sources */,
 				A2C60D0A26F9BBDD008FFC18 /* User.swift in Sources */,

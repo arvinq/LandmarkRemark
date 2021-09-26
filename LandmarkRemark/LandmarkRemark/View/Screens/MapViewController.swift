@@ -30,6 +30,7 @@ class MapViewController: UIViewController {
     private func setup() {
         setupViews()
         setupConstraints()
+        setupObserver()
     }
     
     private func setupViews() {
@@ -61,6 +62,19 @@ class MapViewController: UIViewController {
             infoButton.heightAnchor.constraint(equalToConstant: Size.buttonHeight),
             infoButton.widthAnchor.constraint(equalTo: infoButton.heightAnchor),
         ])
+    }
+    
+    private func setupObserver() {
+        // center to location when selected from remarks list
+        NotificationCenter.default.addObserver(forName: .LRCenterToSelectedLocation, object: nil, queue: nil) { [weak self] notification in
+            
+            guard let self = self else { return }
+            
+            if let remarkViewModel = notification.userInfo?["remarkViewModel"] as? RemarkViewModel {
+                let remarkLocation = CLLocation(latitude: remarkViewModel.latitude, longitude: remarkViewModel.longitude)
+                self.zoomViewOnUserLocation(remarkLocation)
+            }
+        }
     }
     
     private func checkLocationServices() {
@@ -109,7 +123,20 @@ class MapViewController: UIViewController {
     }
     
     @objc private func infoButtonTapped() {
-        print("infoButtonTapped")
+        let allRemarksInfoVC = AllRemarksInfoViewController()
+        
+        if #available(iOS 15.0, *) {
+            if let sheet = allRemarksInfoVC.sheetPresentationController {
+                sheet.detents = [.medium(), .large()]
+                sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+                sheet.prefersGrabberVisible = true
+            }
+            present(allRemarksInfoVC, animated: true, completion: nil)
+        } else {
+            // Fallback on earlier versions
+            let navController = UINavigationController(rootViewController: allRemarksInfoVC)
+            present(navController, animated: true, completion: nil)
+        }
     }
 
 }
