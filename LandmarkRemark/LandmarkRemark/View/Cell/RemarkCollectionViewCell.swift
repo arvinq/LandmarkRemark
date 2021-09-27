@@ -12,6 +12,8 @@ class RemarkCollectionViewCell: UICollectionViewCell {
     // reuse identifier
     static let reuseId = "RemarkCollectionViewCell"
     
+    // MARK: Properties
+    
     var noteTitleLabel = UILabel()
     var separatorView = LRSeparatorView()
     var textStackview = UIStackView()
@@ -40,11 +42,13 @@ class RemarkCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupView() {
+        // Note title
         noteTitleLabel.font = UIFont.systemFont(ofSize: 18.0, weight: .bold)
         noteTitleLabel.textColor = .label
         noteTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(noteTitleLabel)
 
+        // Container view for Lat and Long labels
         textStackview.axis = .horizontal
         textStackview.alignment = .fill
         textStackview.distribution = .fillProportionally
@@ -65,15 +69,17 @@ class RemarkCollectionViewCell: UICollectionViewCell {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
+            // Note Title
             noteTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.padding),
             noteTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Space.padding),
             noteTitleLabel.bottomAnchor.constraint(equalTo: textStackview.topAnchor, constant: -Space.padding),
             
-            //latitude and longitude
+            // container view
             textStackview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.padding),
             textStackview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Space.padding),
             textStackview.bottomAnchor.constraint(equalTo: separatorView.topAnchor, constant: -Space.padding),
             
+            // separator
             separatorView.heightAnchor.constraint(equalToConstant: Size.separatorHeight),
             separatorView.widthAnchor.constraint(equalTo: widthAnchor),
             separatorView.bottomAnchor.constraint(equalTo: bottomAnchor)
@@ -81,7 +87,9 @@ class RemarkCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: Bind values
-    
+    /**
+     * Bind viewModel's values to cell's view properties for display
+     */
     private func bindValues() {
         noteTitleLabel.text = remarkViewModel?.title
         latitudeLabel.text = "Latitude: \(remarkViewModel?.latitude ?? 0.0)"

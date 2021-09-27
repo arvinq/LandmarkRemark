@@ -7,6 +7,9 @@
 
 import Foundation
 
+/**
+ * To be used to represent users in the application.
+ */
 struct User {
     let username: String
 }

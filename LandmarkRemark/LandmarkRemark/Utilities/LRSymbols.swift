@@ -7,6 +7,9 @@
 
 import UIKit
 
+/**
+ * Easy access SFSymbols used in the app.
+ */
 enum SFSymbols {
     static let infoFill = UIImage(systemName: "info.circle.fill")
 }

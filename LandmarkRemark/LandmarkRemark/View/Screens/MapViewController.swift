@@ -11,6 +11,8 @@ import CoreLocation
 
 class MapViewController: UIViewController {
 
+    // MARK: Properties
+    
     let mapView = MKMapView()
     let locationManager = CLLocationManager()
     
@@ -27,6 +29,8 @@ class MapViewController: UIViewController {
         checkLocationServices()
     }
 
+    // MARK: Setup methods
+    
     private func setup() {
         setupViews()
         setupConstraints()
@@ -40,6 +44,7 @@ class MapViewController: UIViewController {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mapView)
         
+        // info button
         infoButton.backgroundColor = .black
         infoButton.alpha = Alpha.mid
         infoButton.setImage(SFSymbols.infoFill, for: .normal)
@@ -52,11 +57,13 @@ class MapViewController: UIViewController {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
+            // mapview
             mapView.topAnchor.constraint(equalTo: view.topAnchor),
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
+            //info button
             infoButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Space.padding),
             infoButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Space.padding),
             infoButton.heightAnchor.constraint(equalToConstant: Size.buttonHeight),
@@ -88,7 +95,6 @@ class MapViewController: UIViewController {
     }
 
     private func setupLocationManager() {
-        // location manager
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
@@ -119,11 +125,23 @@ class MapViewController: UIViewController {
         }
     }
     
+    /**
+     * Create a region that centers on the passed location and zoom into or out of the region based on how far the  size of the coordinates from the center.
+     *
+     * - Parameters:
+     *      - location: contains the coordinates where the region is created and zoomed into
+     */
     private func zoomViewOnUserLocation(_ location: CLLocation) {
         let region = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: Map.regionInMeters, longitudinalMeters: Map.regionInMeters)
         mapView.setRegion(region, animated: true)
     }
     
+    /**
+     * Uses the passed remarkViewModel to create a location object used for creating the region to zoom into. Also creates an annotation object from the remark to map it into the MapView
+     *
+     * - Parameters:
+     *      - remark: view model that indicates the location and the annotation to zoom into and map in our map view
+     */
     private func mapAnnotation(using remark: RemarkViewModel) {
         
         let remarkLocation = CLLocation(latitude: remark.latitude, longitude: remark.longitude)
@@ -135,6 +153,9 @@ class MapViewController: UIViewController {
         mapView.addAnnotation(remarkAnnotation)
     }
     
+    /**
+     * Function to execute when info button is tapped
+     */
     @objc private func infoButtonTapped() {
         let allRemarksInfoVC = AllRemarksInfoViewController()
         
@@ -146,6 +167,7 @@ class MapViewController: UIViewController {
 
 }
 
+// MARK: CLLocationManager Delegate
 extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -161,17 +183,22 @@ extension MapViewController: CLLocationManagerDelegate {
     }
 }
 
-
+// MARK: MapView Delegate
 extension MapViewController: MKMapViewDelegate {
     
+    /**
+     * Delegate method triggered when selecting an annotation from the map.
+     */
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard let title = view.annotation?.title else { return }
         
+        // creates an instance of our currentLocationVC and inject in the values that will be used in that VC
         let currentLocationInfoVC = CurrentLocationInfoViewController()
         currentLocationInfoVC.titleText = title
         currentLocationInfoVC.coordinates = view.annotation?.coordinate
         
-        
+        // Use the sheetPresentation Controller to control the size of the sheet presented modally.
+        // Only available on ios15 so we revert back to presenting the view controller inside the navigation controller modally.
         if #available(iOS 15.0, *) {
             if let sheet = currentLocationInfoVC.sheetPresentationController {
                 sheet.detents = [.medium(), .large()]

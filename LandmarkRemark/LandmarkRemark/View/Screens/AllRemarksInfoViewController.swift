@@ -33,10 +33,12 @@ class AllRemarksInfoViewController: UIViewController {
         setupDatasource()
     }
     
+    // setup UI element's properties
     private func setupView() {
         view.backgroundColor = .systemBackground
         title = "Landmarks"
         
+        // CollectionView
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.scrollDirection = .vertical
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
@@ -47,6 +49,7 @@ class AllRemarksInfoViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
         
+        // searchController
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search for landmarks"
@@ -55,6 +58,7 @@ class AllRemarksInfoViewController: UIViewController {
         navigationItem.searchController = searchController
     }
     
+    // constraints setup for collectionView
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -64,6 +68,9 @@ class AllRemarksInfoViewController: UIViewController {
         ])
     }
     
+    /**
+     * Call our viewModel manager to get the remarks list from our DB and supply it to our diffable datasource based on the updated list that we retrieved.
+     */
     private func setupNotes() {
         ViewModelManager.shared.getRemarks { [weak self] error in
             guard let self = self else { return }
@@ -83,6 +90,9 @@ class AllRemarksInfoViewController: UIViewController {
 
 extension AllRemarksInfoViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    /**
+     * Create our diffable datasource to manage our model and create/provide a cell based on our viewModel.
+     */
     private func setupDatasource() {
         datasource = UICollectionViewDiffableDataSource<Section, RemarkViewModel>(collectionView: collectionView, cellProvider: { collectionView, indexPath, remarkViewModelIdentifier in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RemarkCollectionViewCell.reuseId, for: indexPath) as! RemarkCollectionViewCell
@@ -92,6 +102,12 @@ extension AllRemarksInfoViewController: UICollectionViewDelegate, UICollectionVi
         })
     }
     
+    /**
+     * Create a snapshot from the passed Remarks view model list which subsequently updates our datasource.
+     *
+     * - Parameters:
+     *      - remarksList: new list or remarks view model to supply into our datasource and update our items in the collectionView
+     */
     private func updateDatasource(using remarksList: [RemarkViewModel]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, RemarkViewModel>()
         snapshot.appendSections([.main])
@@ -111,6 +127,7 @@ extension AllRemarksInfoViewController: UICollectionViewDelegate, UICollectionVi
         guard let remarkViewModel = datasource.itemIdentifier(for: indexPath) else { return }
         
         dismiss(animated: true) {
+            // once we get our remark, we then post a notification that directs the UI to the exact location of the remark in the map.
             NotificationCenter.default.post(name: .LRCenterToSelectedLocation, object: self, userInfo: ["remarkViewModel":remarkViewModel])
         }
     }
@@ -121,17 +138,20 @@ extension AllRemarksInfoViewController: UICollectionViewDelegate, UICollectionVi
 extension AllRemarksInfoViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text, !text.isEmpty else {
-            // if search text is empty
+            // if search text is empty, then we update our datasource with the usual remarks list.
+            // this is triggered upon tapping the search bar and deleting the entries entered in the search.
             ViewModelManager.shared.resetFilteredRemarks()
             updateDatasource(using: ViewModelManager.shared.getAllRemarks())
             return
         }
         
+        // process the search text in our view model manager which updates its properties. Then update our diffable datasource with this new filtered list.
         ViewModelManager.shared.filterRemark(having: text)
         updateDatasource(using: ViewModelManager.shared.getFilteredRemarks())
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        // just get all the remarks once the user cancels the search
         ViewModelManager.shared.resetFilteredRemarks()
         updateDatasource(using: ViewModelManager.shared.getAllRemarks())
     }

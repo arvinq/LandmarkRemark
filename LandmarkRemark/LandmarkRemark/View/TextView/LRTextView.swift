@@ -18,6 +18,7 @@ class LRTextView: UITextView {
     }
     
     override var text: String! {
+        // Chang text color to indicate that a placeholder is being shown
         didSet { textColor = text == placeholder ? .tertiaryLabel : .label }
     }
     
@@ -25,7 +26,6 @@ class LRTextView: UITextView {
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
-        
         setup()
     }
     
@@ -74,6 +74,7 @@ extension LRTextView: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
+        // trigger the delegate method when textView has changed.
         changeDelegate?.lrTextViewDidChange(textView as! LRTextView)
     }
 }

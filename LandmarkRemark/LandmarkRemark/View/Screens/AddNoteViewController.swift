@@ -10,6 +10,8 @@ import MapKit
 
 class AddNoteViewController: UIViewController {
     
+    // MARK: Properties
+    
     var coordinates: CLLocationCoordinate2D?
     
     var defaultTitle: String?
@@ -23,6 +25,7 @@ class AddNoteViewController: UIViewController {
     var noteTextView = LRTextView()
     var saveNoteButton = UIButton()
     
+    // Boolean values used for enabling/disabling save button based on the user's text field/view activity
     var isNoteTitleChange: Bool = false { didSet { setDidValueChanged() } }
     var isNoteTextChange : Bool = false { didSet { setDidValueChanged() } }
     var shouldEnableSave : Bool = false { didSet { enableSaveButton() } }
@@ -33,11 +36,14 @@ class AddNoteViewController: UIViewController {
         setup()
     }
     
+    // MARK: Setup methods
+    
     private func setup() {
         setupView()
         setupConstraints()
     }
     
+    // setup UI element's properties
     private func setupView() {
         title = "Add Note"
         view.backgroundColor = .systemBackground
@@ -104,9 +110,11 @@ class AddNoteViewController: UIViewController {
         view.addSubview(saveNoteButton)
     }
     
+    // constraints setup for UI elements
     private func setupConstraints() {
         
         NSLayoutConstraint.activate([
+            // longitude and latitude
             latitudeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Space.padding),
             latitudeLabel.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor),
             latitudeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Space.padding),
@@ -115,11 +123,13 @@ class AddNoteViewController: UIViewController {
             longitudeLabel.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor),
             longitudeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Space.padding),
             
+            // separator view
             separatorView.topAnchor.constraint(equalTo: longitudeLabel.bottomAnchor, constant: Space.adjacent),
             separatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             separatorView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             separatorView.heightAnchor.constraint(equalToConstant: Size.separatorHeight),
             
+            // titles label and textField
             titleLabel.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: Space.adjacent),
             titleLabel.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  Space.padding),
@@ -128,6 +138,7 @@ class AddNoteViewController: UIViewController {
             titleTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             titleTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Space.padding),
             
+            // note's label and textfield
             noteLabel.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: Space.adjacent),
             noteLabel.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor),
             noteLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Space.padding),
@@ -137,6 +148,7 @@ class AddNoteViewController: UIViewController {
             noteTextView.trailingAnchor.constraint(equalTo: separatorView.trailingAnchor),
             noteTextView.heightAnchor.constraint(equalToConstant: Size.textViewHeight),
             
+            // save button
             saveNoteButton.topAnchor.constraint(equalTo: noteTextView.bottomAnchor, constant: Space.adjacent),
             saveNoteButton.widthAnchor.constraint(equalTo: separatorView.widthAnchor),
             saveNoteButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -144,6 +156,10 @@ class AddNoteViewController: UIViewController {
         ])
     }
  
+    /**
+     * Invoke addRemark action that adds remark based on the values keyed in by the user. We create a viewModel instance based on this values and
+     * send the view model instance to our persistence manager to facilitate the saving.
+     */
     @objc private func saveNoteTapped() {
         guard let coordinates = coordinates else { return }
 
@@ -153,6 +169,7 @@ class AddNoteViewController: UIViewController {
         let remarkViewModel = RemarkViewModel(title: title, note: noteText, coordinate: coordinates)
         
         dismiss(animated: true) {
+            // call the addRemark action on viewModel manager passing in created remarkViewModel
             ViewModelManager.shared.addRemark(remarkViewModel: remarkViewModel) { [weak self] error in
                 guard let self = self else { return }
                 
@@ -164,14 +181,17 @@ class AddNoteViewController: UIViewController {
         }
     }
     
+    /// Dismiss AddNote view controller
     @objc private func dismissViewController() {
         dismiss(animated: true, completion: nil)
     }
     
+    /// We enable save button if e both have texts inputted in Note textView and title textField
     private func setDidValueChanged() {
         shouldEnableSave = isNoteTitleChange && isNoteTextChange
     }
     
+    /// We control saveNote button's accessibility based on shouldEnableSave value. Please see setDidValueChanged method to check the shouldEnableSave is being configured
     private func enableSaveButton() {
         UIView.animate(withDuration: Animation.duration) {
             self.saveNoteButton.alpha = self.shouldEnableSave ? 1.0 : 0.5

@@ -10,6 +10,8 @@ import MapKit
 
 class CurrentLocationInfoViewController: UIViewController {
 
+    // MARK: Properties
+    
     var titleText: String?
     var coordinates: CLLocationCoordinate2D?
     
@@ -33,6 +35,8 @@ class CurrentLocationInfoViewController: UIViewController {
         setupNotes()
     }
 
+    // MARK: Setup methods
+    
     private func setup() {
         setupView()
         setupConstraints()
@@ -98,6 +102,7 @@ class CurrentLocationInfoViewController: UIViewController {
     
     private func setupConstraints() {
         
+        // Hitting an issue with Sheet Presentation Controller with navigation bar, hence we just made a condition to assign correct padding for the top most UI element. If we're using Sheet Presentation (when iOS 15 is used), we then use the top bar height property of the view controller. Else we just use the normal padding.
         var topPadding = Space.padding
 
         if #available(iOS 15.0, *) {
@@ -142,6 +147,9 @@ class CurrentLocationInfoViewController: UIViewController {
         ])
     }
     
+    /**
+     * Get the list of Remarks from Firestore. We then retrieve the  correct remark based on the selected current locations' coordinate to populate the UI elements.
+     */
     private func setupNotes() {
         //check DB first if we have a note, else, we will show the addNote button
         ViewModelManager.shared.getRemarks { [weak self] error in
@@ -167,6 +175,12 @@ class CurrentLocationInfoViewController: UIViewController {
         }
     }
     
+    /**
+     * Configure some of the view's visibility on whether to show it or not in the app depending on the isHidden parameter passed on to it.
+     *
+     * - Parameters:
+     *      - isHidden: boolean value to control view's hidden property
+     */
     private func setupViewVisibility(using isHidden: Bool) {
         // no remarks yet
         addNoteButton.isHidden = isHidden
@@ -177,6 +191,9 @@ class CurrentLocationInfoViewController: UIViewController {
         noteTextView.isHidden = !isHidden
     }
     
+    /**
+     * Presents AddNote View Controller to add a remark on a specific location represented by the current coordinates.
+     */
     @objc private func addNoteTapped() {
         let addNoteViewController = AddNoteViewController()
         addNoteViewController.coordinates = coordinates
@@ -185,6 +202,7 @@ class CurrentLocationInfoViewController: UIViewController {
         present(navController, animated: true)
     }
     
+    /// Dismiss CurrentLocation view controller
     @objc private func dismissViewController() {
         dismiss(animated: true, completion: nil)
     }

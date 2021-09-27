@@ -8,6 +8,9 @@
 import UIKit
 
 extension UIViewController {
+    /**
+     * Property to represent navigation bar height for view controllers.
+     */
     var topBarHeight: CGFloat {
         var top = self.navigationController?.navigationBar.frame.height ?? 0.0
         
@@ -21,12 +24,12 @@ extension UIViewController {
     }
     
     /**
-     * Show alert usign the passed title and message.
+     * Show alert using the passed title and message.
      *
      * - Parameters:
-     *  - title: Title of the alert
-     *  - message: Information message showing the reason for the alert
-     *  - buttonTitle: Title of the button to dismiss the alert
+     *      - title: Title of the alert
+     *      - message: Information message showing the reason for the alert
+     *      - buttonTitle: Title of the button to dismiss the alert
      */
     func presentAlert(withTitle title: String, andMessage message: String, buttonTitle: String) {
         DispatchQueue.main.async {

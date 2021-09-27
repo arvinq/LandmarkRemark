@@ -7,6 +7,9 @@
 
 import UIKit
 
+/**
+ * Separator view presents a line separator to separate visual controls in the UI
+ */
 class LRSeparatorView: UIView {
 
     override init(frame: CGRect) {

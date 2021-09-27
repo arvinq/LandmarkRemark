@@ -8,6 +8,9 @@
 import UIKit
 import MapKit
 
+/**
+ * Remark Annotation is mainly used for representing remarks to be annotated by MapView
+ */
 class RemarkAnnotation: NSObject, MKAnnotation {
     var title: String?
     var coordinate: CLLocationCoordinate2D
